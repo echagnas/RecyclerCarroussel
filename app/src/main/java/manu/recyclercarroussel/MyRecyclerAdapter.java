@@ -2,7 +2,6 @@ package manu.recyclercarroussel;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +9,11 @@ import android.view.ViewGroup;
 /**
  * Created by emmanuelchagnas on 20/11/15.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
     private Context context;
 
-    public RecyclerAdapter(Context context) {
+    public MyRecyclerAdapter(Context context) {
         this.context = context;
     }
 
@@ -32,10 +31,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (position % 2 == 0) {
-            Log.d("RECYLCER", "onBindViewHolder: 1");
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.colorRecyclerItem1));
         } else {
-            Log.d("RECYLCER", "onBindViewHolder: 2");
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.colorRecyclerItem2));
         }
     }
