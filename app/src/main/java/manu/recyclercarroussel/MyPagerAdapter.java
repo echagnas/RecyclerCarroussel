@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,31 @@ public class MyPagerAdapter extends PagerAdapter{
     private Context context;
     private int nbItems;
 
-    public MyPagerAdapter(Context context, int nbItems){
+    public MyPagerAdapter(final ViewPager pager, Context context, int nbItems){
         this.context = context;
-        this.nbItems = nbItems;
+        this.nbItems = nbItems + 2;
+
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                int pageCount = getCount();
+                if (position == 0){
+                    pager.setCurrentItem(pageCount-2,false);
+                } else if (position == pageCount-1){
+                    pager.setCurrentItem(1,false);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -35,8 +58,6 @@ public class MyPagerAdapter extends PagerAdapter{
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
-
         TextView textView = new TextView(context);
         textView.setTextColor(Color.WHITE);
         textView.setTextSize(30);

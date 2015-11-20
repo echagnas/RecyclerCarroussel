@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int DELAY = 5000;
+    public static final int DELAY = 2000;
     public static final int VIEWPAGER_NB_ITEMS = 10;
 
     private ViewPager viewPager;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //View pager adapter
-        MyPagerAdapter pagerAdapter = new MyPagerAdapter(this, VIEWPAGER_NB_ITEMS);
+        MyPagerAdapter pagerAdapter = new MyPagerAdapter(viewPager, this, VIEWPAGER_NB_ITEMS);
         viewPager.setAdapter(pagerAdapter);
 
         //Handler to change page automatically
@@ -98,9 +98,6 @@ public class MainActivity extends AppCompatActivity {
         public void run()
         {
             currentPage = viewPager.getCurrentItem() + 1;
-            if (currentPage >= VIEWPAGER_NB_ITEMS) {
-                currentPage = 0;
-            }
             viewPager.setCurrentItem(currentPage++, true);
 
             mHandler.postDelayed( mRunnable , DELAY );
